@@ -3,7 +3,7 @@ import { FACTORY_ADDRESS, BUNDLE_ID } from '../constants'
 
 export const SUBGRAPH_HEALTH = gql`
   query health {
-    indexingStatusForCurrentVersion(subgraphName: "pancakeswap/exchange") {
+    indexingStatusForCurrentVersion(subgraphName: "bafswap/exchange") {
       synced
       health
       chains {
@@ -289,15 +289,15 @@ export const PAIR_DAY_DATA_BULK = (pairs, startTimestamp) => {
 }
 
 export const GLOBAL_CHART = gql`
-  query uniswapDayDatas($startTime: Int!, $skip: Int!) {
-    uniswapDayDatas(first: 1000, skip: $skip, where: { date_gt: $startTime }, orderBy: date, orderDirection: asc) {
+  query pancakeDayDatas($startTime: Int!, $skip: Int!) {
+    pancakeDayDatas(first: 1000, skip: $skip, where: { date_gt: $startTime }, orderBy: date, orderDirection: asc) {
       id
       date
       totalVolumeUSD
       dailyVolumeUSD
-      dailyVolumeETH
+      dailyVolumeBNB
       totalLiquidityUSD
-      totalLiquidityETH
+      totalLiquidityBNB
     }
   }
 `
@@ -312,7 +312,7 @@ export const GLOBAL_DATA = (block) => {
         totalVolumeETH
         untrackedVolumeUSD
         totalLiquidityUSD
-        totalLiquidityETH
+        totalLiquidityBNB
         txCount
         pairCount
       }
@@ -523,7 +523,7 @@ const PairFields = `
 
 export const PAIRS_CURRENT = gql`
   query pairs {
-    pairs(first: 100, where: { createdAtBlockNumber_gte : 5753123 },  orderBy: trackedReserveETH, orderDirection: desc) {
+    pairs(first: 100, where: { createdAtBlockNumber_gte: 5753123 }, orderBy: trackedReserveETH, orderDirection: desc) {
       id
     }
   }
@@ -577,8 +577,8 @@ export const TOKEN_CHART = gql`
       priceUSD
       totalLiquidityToken
       totalLiquidityUSD
-      totalLiquidityETH
-      dailyVolumeETH
+      totalLiquidityBNB
+      dailyVolumeBNB
       dailyVolumeToken
       dailyVolumeUSD
     }

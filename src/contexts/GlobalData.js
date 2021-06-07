@@ -275,10 +275,10 @@ async function getGlobalData(ethPrice, oldEthPrice) {
       )
 
       // format the total liquidity in USD
-      data.totalLiquidityUSD = data.totalLiquidityETH * ethPrice
+      data.totalLiquidityUSD = data.totalLiquidityBNB * ethPrice
       const liquidityChangeUSD = getPercentChange(
-        data.totalLiquidityETH * ethPrice,
-        oneDayData.totalLiquidityETH * oldEthPrice
+        data.totalLiquidityBNB * ethPrice,
+        oneDayData.totalLiquidityBNB * oldEthPrice
       )
 
       // add relevant fields with the calculated amounts
@@ -320,8 +320,8 @@ const getChartData = async (oldestDateToFetch) => {
         fetchPolicy: 'cache-first',
       })
       skip += 1000
-      data = data.concat(result.data.uniswapDayDatas)
-      if (result.data.uniswapDayDatas.length < 1000) {
+      data = data.concat(result.data.pancakeDayDatas)
+      if (result.data.pancakeDayDatas.length < 1000) {
         allFound = true
       }
     }
