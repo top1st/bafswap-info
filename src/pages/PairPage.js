@@ -167,12 +167,12 @@ function PairPage({ pairAddress, history }) {
       : '-'
 
   // token data for usd
-  const [ethPrice] = useEthPrice()
+  const [bnbPrice] = useEthPrice()
   const token0USD =
-    token0?.derivedETH && ethPrice ? formattedNum(parseFloat(token0.derivedETH) * parseFloat(ethPrice), true) : ''
+    token0?.derivedETH && bnbPrice ? formattedNum(parseFloat(token0.derivedETH) * parseFloat(bnbPrice), true) : ''
 
   const token1USD =
-    token1?.derivedETH && ethPrice ? formattedNum(parseFloat(token1.derivedETH) * parseFloat(ethPrice), true) : ''
+    token1?.derivedETH && bnbPrice ? formattedNum(parseFloat(token1.derivedETH) * parseFloat(bnbPrice), true) : ''
 
   // rates
   const token0Rate = reserve0 && reserve1 ? formattedNum(reserve1 / reserve0) : '-'
