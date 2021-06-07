@@ -98,7 +98,7 @@ export const toWeeklyDate = (date) => {
 }
 
 export function getTimestampsForChanges() {
-  const utcCurrentTime = dayjs.unix(1616025600)
+  const utcCurrentTime = dayjs.unix(1623079730)
   const t1 = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
   const t2 = utcCurrentTime.subtract(2, 'day').startOf('minute').unix()
   const tWeek = utcCurrentTime.subtract(1, 'week').startOf('minute').unix()
@@ -209,7 +209,7 @@ export async function getLiquidityTokenBalanceOvertime(account, timestamps) {
  */
 export async function getShareValueOverTime(pairAddress, timestamps) {
   if (!timestamps) {
-    const utcCurrentTime = dayjs.unix(1616025600)
+    const utcCurrentTime = dayjs.unix(1623079730)
     const utcSevenDaysBack = utcCurrentTime.subtract(8, 'day').unix()
     timestamps = getTimestampRange(utcSevenDaysBack, 86400, 7)
   }
@@ -235,8 +235,8 @@ export async function getShareValueOverTime(pairAddress, timestamps) {
         reserve0: result.data[row].reserve0,
         reserve1: result.data[row].reserve1,
         reserveUSD: result.data[row].reserveUSD,
-        token0DerivedETH: result.data[row].token0.derivedETH,
-        token1DerivedETH: result.data[row].token1.derivedETH,
+        token0DerivedETH: result.data[row].token0.derivedBNB,
+        token1DerivedETH: result.data[row].token1.derivedBNB,
         roiUsd: values && values[0] ? sharePriceUsd / values[0]['sharePriceUsd'] : 1,
         bnbPrice: 0,
         token0PriceUSD: 0,
@@ -301,7 +301,7 @@ export const urls = {
 }
 
 export const formatTime = (unix) => {
-  const now = dayjs.unix(1616025600)
+  const now = dayjs.unix(1623079730)
   const timestamp = dayjs.unix(unix)
 
   const inSeconds = now.diff(timestamp, 'second')

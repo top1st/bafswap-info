@@ -193,7 +193,7 @@ export default function Provider({ children }) {
 }
 
 const getTopTokens = async (bnbPrice, bnbPriceOld) => {
-  const utcCurrentTime = dayjs.unix(1616025600)
+  const utcCurrentTime = dayjs.unix(1623079730)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
   let oneDayBlock = await getBlockFromTimestamp(utcOneDayBack)
@@ -262,17 +262,17 @@ const getTopTokens = async (bnbPrice, bnbPriceOld) => {
             twoDayHistory?.txCount ?? 0
           )
 
-          const currentLiquidityUSD = data?.totalLiquidity * bnbPrice * data?.derivedETH
-          const oldLiquidityUSD = oneDayHistory?.totalLiquidity * bnbPriceOld * oneDayHistory?.derivedETH
+          const currentLiquidityUSD = data?.totalLiquidity * bnbPrice * data?.derivedBNB
+          const oldLiquidityUSD = oneDayHistory?.totalLiquidity * bnbPriceOld * oneDayHistory?.derivedBNB
 
           // percent changes
           const priceChangeUSD = getPercentChange(
-            data?.derivedETH * bnbPrice,
-            oneDayHistory?.derivedETH ? oneDayHistory?.derivedETH * bnbPriceOld : 0
+            data?.derivedBNB * bnbPrice,
+            oneDayHistory?.derivedBNB ? oneDayHistory?.derivedBNB * bnbPriceOld : 0
           )
 
           // set data
-          data.priceUSD = data?.derivedETH * bnbPrice
+          data.priceUSD = data?.derivedBNB * bnbPrice
           data.totalLiquidityUSD = currentLiquidityUSD
           data.oneDayVolumeUSD = parseFloat(oneDayVolumeUSD)
           data.volumeChangeUSD = volumeChangeUSD
@@ -284,7 +284,7 @@ const getTopTokens = async (bnbPrice, bnbPriceOld) => {
           // new tokens
           if (!oneDayHistory && data) {
             data.oneDayVolumeUSD = data.tradeVolumeUSD
-            data.oneDayVolumeETH = data.tradeVolume * data.derivedETH
+            data.oneDayVolumeETH = data.tradeVolume * data.derivedBNB
             data.oneDayTxns = data.txCount
           }
 
@@ -318,7 +318,7 @@ const getTopTokens = async (bnbPrice, bnbPriceOld) => {
 }
 
 const getTokenData = async (address, bnbPrice, bnbPriceOld) => {
-  const utcCurrentTime = dayjs.unix(1616025600)
+  const utcCurrentTime = dayjs.unix(1623079730)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
   const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').startOf('minute').unix()
   let oneDayBlock = await getBlockFromTimestamp(utcOneDayBack)
@@ -389,15 +389,15 @@ const getTokenData = async (address, bnbPrice, bnbPriceOld) => {
     )
 
     const priceChangeUSD = getPercentChange(
-      data?.derivedETH * bnbPrice,
-      parseFloat(oneDayData?.derivedETH ?? 0) * bnbPriceOld
+      data?.derivedBNB * bnbPrice,
+      parseFloat(oneDayData?.derivedBNB ?? 0) * bnbPriceOld
     )
 
-    const currentLiquidityUSD = data?.totalLiquidity * bnbPrice * data?.derivedETH
-    const oldLiquidityUSD = oneDayData?.totalLiquidity * bnbPriceOld * oneDayData?.derivedETH
+    const currentLiquidityUSD = data?.totalLiquidity * bnbPrice * data?.derivedBNB
+    const oldLiquidityUSD = oneDayData?.totalLiquidity * bnbPriceOld * oneDayData?.derivedBNB
 
     // set data
-    data.priceUSD = data?.derivedETH * bnbPrice
+    data.priceUSD = data?.derivedBNB * bnbPrice
     data.totalLiquidityUSD = currentLiquidityUSD
     data.oneDayVolumeUSD = oneDayVolumeUSD
     data.volumeChangeUSD = volumeChangeUSD
@@ -412,7 +412,7 @@ const getTokenData = async (address, bnbPrice, bnbPriceOld) => {
     // new tokens
     if (!oneDayData && data) {
       data.oneDayVolumeUSD = data.tradeVolumeUSD
-      data.oneDayVolumeETH = data.tradeVolume * data.derivedETH
+      data.oneDayVolumeETH = data.tradeVolume * data.derivedBNB
       data.oneDayTxns = data.txCount
     }
 
@@ -509,11 +509,11 @@ const getIntervalTokenData = async (tokenAddress, startTime, interval = 3600, la
     let values = []
     for (var row in result) {
       let timestamp = row.split('t')[1]
-      let derivedETH = parseFloat(result[row]?.derivedETH)
+      let derivedBNB = parseFloat(result[row]?.derivedBNB)
       if (timestamp) {
         values.push({
           timestamp,
-          derivedETH,
+          derivedBNB,
         })
       }
     }
@@ -523,7 +523,7 @@ const getIntervalTokenData = async (tokenAddress, startTime, interval = 3600, la
     for (var brow in result) {
       let timestamp = brow.split('b')[1]
       if (timestamp) {
-        values[index].priceUSD = result[brow].bnbPrice * values[index].derivedETH
+        values[index].priceUSD = result[brow].bnbPrice * values[index].derivedBNB
         index += 1
       }
     }

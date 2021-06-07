@@ -12,7 +12,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://thegraph.bafswap.live/index-node/graphql',
+    uri: 'https://thegraph.bafswap.live/graphql',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,

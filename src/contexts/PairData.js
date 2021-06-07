@@ -184,9 +184,9 @@ export default function Provider({ children }) {
 
 async function getBulkPairData(pairList, bnbPrice) {
   const [t1, t2, tWeek] = getTimestampsForChanges()
-  let [{ number: b1 }, { number: b2 }, { number: bWeek }] = await getBlocksFromTimestamps([t1, t2, tWeek])
 
   try {
+    let [{ number: b1 }, { number: b2 }, { number: bWeek }] = await getBlocksFromTimestamps([t1, t2, tWeek])
     let current = await client.query({
       query: PAIRS_BULK,
       variables: {
@@ -277,7 +277,7 @@ function parseData(data, oneDayData, twoDayData, oneWeekData, bnbPrice, oneDayBl
   data.volumeChangeUntracked = volumeChangeUntracked
 
   // set liquiditry properties
-  data.trackedReserveUSD = data.trackedReserveETH * bnbPrice
+  data.trackedReserveUSD = data.trackedReserveBNB * bnbPrice
   data.liquidityChangeUSD = getPercentChange(data.reserveUSD, oneDayData?.reserveUSD)
 
   // format if pair hasnt existed for a day or a week

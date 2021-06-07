@@ -209,7 +209,7 @@ async function getGlobalData(bnbPrice, oldEthPrice) {
 
   try {
     // get timestamps for the days
-    const utcCurrentTime = dayjs.unix(1616025600)
+    const utcCurrentTime = dayjs.unix(1623079730)
     const utcOneDayBack = utcCurrentTime.subtract(1, 'day').unix()
     const utcTwoDaysBack = utcCurrentTime.subtract(2, 'day').unix()
     const utcOneWeekBack = utcCurrentTime.subtract(1, 'week').unix()
@@ -228,32 +228,32 @@ async function getGlobalData(bnbPrice, oldEthPrice) {
       query: GLOBAL_DATA(),
       fetchPolicy: 'cache-first',
     })
-    data = result.data.uniswapFactories[0]
+    data = result.data.pancakeFactories[0]
 
     // fetch the historical data
     let oneDayResult = await client.query({
       query: GLOBAL_DATA(oneDayBlock?.number),
       fetchPolicy: 'cache-first',
     })
-    oneDayData = oneDayResult.data.uniswapFactories[0]
+    oneDayData = oneDayResult.data.pancakeFactories[0]
 
     let twoDayResult = await client.query({
       query: GLOBAL_DATA(twoDayBlock?.number),
       fetchPolicy: 'cache-first',
     })
-    twoDayData = twoDayResult.data.uniswapFactories[0]
+    twoDayData = twoDayResult.data.pancakeFactories[0]
 
     let oneWeekResult = await client.query({
       query: GLOBAL_DATA(oneWeekBlock?.number),
       fetchPolicy: 'cache-first',
     })
-    const oneWeekData = oneWeekResult.data.uniswapFactories[0]
+    const oneWeekData = oneWeekResult.data.pancakeFactories[0]
 
     let twoWeekResult = await client.query({
       query: GLOBAL_DATA(twoWeekBlock?.number),
       fetchPolicy: 'cache-first',
     })
-    const twoWeekData = twoWeekResult.data.uniswapFactories[0]
+    const twoWeekData = twoWeekResult.data.pancakeFactories[0]
 
     if (data && oneDayData && twoDayData && twoWeekData) {
       let [oneDayVolumeUSD, volumeChangeUSD] = get2DayPercentChange(
@@ -428,7 +428,7 @@ const getGlobalTransactions = async () => {
  * Gets the current price  of ETH, 24 hour price, and % change between them
  */
 const getEthPrice = async () => {
-  const utcCurrentTime = dayjs.unix(1616025600)
+  const utcCurrentTime = dayjs.unix(1623079730)
   const utcOneDayBack = utcCurrentTime.subtract(1, 'day').startOf('minute').unix()
 
   let bnbPrice = 0
