@@ -186,7 +186,24 @@ async function getBulkPairData(pairList, bnbPrice) {
   const [t1, t2, tWeek] = getTimestampsForChanges()
 
   try {
-    let [{ number: b1 }, { number: b2 }, { number: bWeek }] = await getBlocksFromTimestamps([t1, t2, tWeek])
+    let b1, b2, bWeek
+    const blocks = await getBlocksFromTimestamps([t1, t2, tWeek])
+    if (blocks[0]) {
+      b1 = blocks[0]['number']
+    } else {
+      b1 = 7948300
+    }
+    if (blocks[1]) {
+      b2 = blocks[1]['number']
+    } else {
+      b2 = 7948300
+    }
+    if (blocks[2]) {
+      bWeek = blocks[2]['number']
+    } else {
+      bWeek = 7948300
+    }
+    // let [{ number: b1 }, { number: b2 }, { number: bWeek }] = await getBlocksFromTimestamps([t1, t2, tWeek])
     let current = await client.query({
       query: PAIRS_BULK,
       variables: {
