@@ -70,9 +70,12 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${isAddress(
-    address
-  )}/logo.png`
+  const path =
+    address?.toLowerCase() === '0x4ce61bbe5a1989364ea3eaffd2a0646e0a9da2dd'
+      ? '/baf.png'
+      : `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/${isAddress(
+          address
+        )}/logo.png`
 
   return (
     <Inline>

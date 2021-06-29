@@ -168,12 +168,12 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://docs.pancakeswap.finance/" target="_blank">
+              <Link href="https://docs.bafswap.live/" target="_blank">
                 Docs
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/PancakeSwap " target="_blank">
+              <Link href="https://twitter.com/bafswap " target="_blank">
                 Twitter
               </Link>
             </HeaderText>
