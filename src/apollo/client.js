@@ -4,7 +4,7 @@ import { HttpLink } from 'apollo-link-http'
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://thegraph.bafswap.live/subgraphs/name/bafswap/exchange',
+    uri: 'http://subgraph.liquidchain.net/subgraphs/name/liquid/exchange',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -12,7 +12,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://thegraph.bafswap.live/graphql',
+    uri: 'http://subgraph.liquidchain.net/graphql',
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -20,7 +20,7 @@ export const healthClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://thegraph.bafswap.live/subgraphs/name/bafswap/blocks',
+    uri: 'http://subgraph.liquidchain.net/subgraphs/name/liquid/blocks',
   }),
   cache: new InMemoryCache(),
 })
