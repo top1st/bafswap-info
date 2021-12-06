@@ -1,6 +1,6 @@
 {
-  "short_name": "Bafswap Info",
-  "name": "View statistics for Bafswap exchanges.",
+  "short_name": "Liquidchain Info",
+  "name": "View statistics for Liquidchain exchanges.",
   "icons": [
     {
       "src": "favicon.png",

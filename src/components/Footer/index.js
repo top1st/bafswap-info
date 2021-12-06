@@ -4,9 +4,9 @@ import { Flex } from 'rebass'
 import Link from '../Link'
 
 const links = [
-  { url: 'https://bafswap.live', text: 'About' },
-  { url: 'https://docs.bafswap.live', text: 'Docs' },
-  { url: 'https://github.com/top1st/bafswap-info', text: 'Code' },
+  { url: 'https://liquidchain.net', text: 'About' },
+  { url: 'https://docs.liquidchain.net', text: 'Docs' },
+  { url: 'https://github.com/top1st/liquid-info', text: 'Code' },
 ]
 
 const FooterLink = ({ children, ...rest }) => (

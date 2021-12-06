@@ -163,17 +163,17 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://bafswap.live/" target="_blank">
-                Bafswap
+              <Link href="https://liquidchain.net/" target="_blank">
+                Liquidchain
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://docs.bafswap.live/" target="_blank">
+              <Link href="https://docs.liquidchain.net/" target="_blank">
                 Docs
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/bafswap " target="_blank">
+              <Link href="https://twitter.com/liquid " target="_blank">
                 Twitter
               </Link>
             </HeaderText>
